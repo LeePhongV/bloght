@@ -417,6 +417,78 @@
       max-width: 50%;
     }
 
+    /* VIDEO SECTION */
+    .videos-wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 60px 100px;
+    }
+
+    .videos-header {
+      margin-bottom: 40px;
+    }
+
+    .videos-header h2 {
+      font-family: 'Lora', serif;
+      font-size: 32px;
+      color: var(--black);
+      margin-bottom: 10px;
+    }
+
+    .videos-header p {
+      font-size: 15px;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    .videos-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+    }
+
+    .video-card {
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--light);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .video-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.08);
+    }
+
+    .video-card .video-wrap {
+      border-radius: 0;
+      margin-bottom: 0;
+    }
+
+    .video-card-body {
+      padding: 16px 20px 20px;
+    }
+
+    .video-card-tag {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 6px;
+    }
+
+    .video-card-title {
+      font-family: 'Lora', serif;
+      font-size: 16px;
+      line-height: 1.4;
+      color: var(--black);
+    }
+
+    @media (max-width: 768px) {
+      .videos-wrap { padding: 0 24px 80px; }
+      .videos-grid { grid-template-columns: 1fr; }
+    }
+
     /* VIDEO EMBED */
     .video-label {
       font-size: 11px;
@@ -620,10 +692,11 @@
 
   <!-- FILTER -->
   <div class="filter-wrap" id="posts">
-    <button class="filter-btn active" onclick="filterPosts('all', this)">Tất cả</button>
+    <button class="filter-btn active" onclick="showSection('posts', this)">Tất cả</button>
     <button class="filter-btn" onclick="filterPosts('hocbai', this)">📚 Mẹo học bài</button>
     <button class="filter-btn" onclick="filterPosts('thoigian', this)">⏰ Quản lý thời gian</button>
     <button class="filter-btn" onclick="filterPosts('ghichep', this)">✏️ Ghi chép</button>
+    <button class="filter-btn" onclick="showSection('videos', this)">🎬 Video</button>
   </div>
 
   <!-- POSTS -->
@@ -748,6 +821,57 @@
       </div>
     </div>
 
+  </div>
+
+  <!-- VIDEO SECTION -->
+  <div class="videos-wrap" id="section-videos" style="display:none;">
+    <div class="videos-header">
+      <h2>🎬 Video hay về học tập</h2>
+      <p>Những video mình thấy có cảm hứng và hữu ích — hy vọng giúp ích cho bạn!</p>
+    </div>
+    <div class="videos-grid">
+
+      <div class="video-card">
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/63FPhjGWjvk" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="video-card-body">
+          <div class="video-card-tag">💡 Cảm hứng học tập</div>
+          <div class="video-card-title">Làm sao để NGHIỆN HỌC NHƯ NGHIỆN MẠNG XÃ HỘI?</div>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/jvdCKfSvQmE" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="video-card-body">
+          <div class="video-card-tag">😴 Mẹo học bài</div>
+          <div class="video-card-title">Làm thế nào để NGỦ SÂU BAN ĐÊM & TỈNH TÁO CẢ NGÀY DÀI?</div>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/c4wqIdghyvM" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="video-card-body">
+          <div class="video-card-tag">💡 Cảm hứng học tập</div>
+          <div class="video-card-title">DOPAMINE DETOX: Cách Từ Bỏ Thói Quen Xấu Và Thay Đổi Cuộc Sống</div>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/ysPsktyIYZ8" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="video-card-body">
+          <div class="video-card-tag">📚 Mẹo học bài</div>
+          <div class="video-card-title">3 SAI LẦM lớn nhất của mình khi TỰ HỌC</div>
+        </div>
+      </div>
+
+    </div>
   </div>
 
   <footer>
@@ -1012,12 +1136,29 @@
       document.body.style.overflow = '';
     }
 
+    function showSection(section, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      if (section === 'videos') {
+        document.querySelector('.posts-wrap').style.display = 'none';
+        document.getElementById('section-videos').style.display = 'block';
+      } else {
+        document.getElementById('section-videos').style.display = 'none';
+        document.querySelector('.posts-wrap').style.display = 'grid';
+        // hiện tất cả bài
+        document.querySelectorAll('.post-card').forEach(card => card.style.display = '');
+      }
+    }
+
     function filterPosts(cat, btn) {
+      // Ẩn video section, hiện posts
+      document.getElementById('section-videos').style.display = 'none';
+      document.querySelector('.posts-wrap').style.display = 'grid';
       document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       document.querySelectorAll('.post-card').forEach(card => {
         const cats = card.dataset.cat ? card.dataset.cat.split(' ') : [];
-        if (cat === 'all' || cats.includes(cat)) {
+        if (cats.includes(cat)) {
           card.style.display = '';
         } else {
           card.style.display = 'none';
