@@ -433,7 +433,7 @@
       padding-bottom: 56.25%;
       border-radius: 10px;
       overflow: hidden;
-      background: #000;
+      background: #111;
       margin-bottom: 16px;
     }
 
@@ -443,6 +443,39 @@
       width: 100%; height: 100%;
       border: none;
     }
+
+    .video-fallback {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: #1a1a1a;
+      color: #aaa;
+      font-size: 14px;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .video-fallback span { font-size: 36px; }
+
+    .video-fallback a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: #ff0000;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      transition: opacity 0.2s;
+    }
+
+    .video-fallback a:hover { opacity: 0.85; }
 
     .source-label {
       font-size: 11px;
@@ -947,6 +980,32 @@
       document.getElementById('popup-' + id).classList.add('active');
       document.body.style.overflow = 'hidden';
     }
+
+    // Xử lý video lỗi — hiện fallback
+    document.querySelectorAll('.video-wrap').forEach(wrap => {
+      const iframe = wrap.querySelector('iframe');
+      const link = iframe ? iframe.src.replace('embed/', 'watch?v=') : '#';
+      const fallback = document.createElement('div');
+      fallback.className = 'video-fallback';
+      fallback.style.display = 'none';
+      fallback.innerHTML = `<span>😢</span><p>Xin lỗi bạn, video không tải được!</p><a href="${link}" target="_blank">▶ Xem trên YouTube</a>`;
+      wrap.appendChild(fallback);
+      if (iframe) {
+        iframe.addEventListener('error', () => {
+          iframe.style.display = 'none';
+          fallback.style.display = 'flex';
+        });
+        // Timeout fallback nếu iframe không phản hồi sau 8 giây
+        setTimeout(() => {
+          try {
+            if (!iframe.contentWindow || iframe.contentWindow.length === 0) {
+              iframe.style.display = 'none';
+              fallback.style.display = 'flex';
+            }
+          } catch(e) { /* cross-origin, video đang load bình thường */ }
+        }, 8000);
+      }
+    });
 
     function closePost(id) {
       document.getElementById('popup-' + id).classList.remove('active');
