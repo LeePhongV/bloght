@@ -404,7 +404,43 @@
       .post-card.featured { grid-template-columns: 1fr; }
       .popup-box { padding: 32px 24px; }
     }
-  </style>
+  .nav-tooltip-wrap {
+  position: relative;
+  cursor: default;
+  color: var(--gray);
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.nav-tooltip {
+  display: none;
+  position: absolute;
+  top: 130%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #222;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 12px;
+  white-space: nowrap;
+  letter-spacing: 0;
+  text-transform: none;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  z-index: 999;
+}
+.nav-tooltip::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-bottom-color: #222;
+}
+.nav-tooltip-wrap:hover .nav-tooltip {
+  display: block;
+}</style>
 </head>
 <body>
 
@@ -412,8 +448,16 @@
   <nav>
     <a href="#" class="nav-logo">Blog Học Tập</a>
     <ul class="nav-links">
-<li><a href="#posts">Lê Đức Phong — 33</a></li>
-<li><a href="#posts">Nguyễn Ngọc Quỳnh Nhi — 29</a></li>
+<li>
+  <span class="nav-tooltip-wrap">Lê Đức Phong — 33
+    <span class="nav-tooltip">💙 Cảm ơn bạn đã ghé thăm blog của chúng mình!</span>
+  </span>
+</li>
+<li>
+  <span class="nav-tooltip-wrap">Nguyễn Ngọc Quỳnh Nhi — 29
+    <span class="nav-tooltip">💗 Hy vọng blog này giúp ích cho bạn nhé~</span>
+  </span>
+</li>
 <li><a href="#posts">Lớp 12C15</a></li>
     </ul>
   </nav>
@@ -687,6 +731,7 @@
 </body>
 
 </html>
+
 
 
 
