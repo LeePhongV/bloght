@@ -68,9 +68,38 @@
     /* HERO */
     .hero {
       padding: 160px 60px 80px;
-      max-width: 860px;
+      max-width: 1100px;
       margin: 0 auto;
       animation: fadeUp 0.8s ease forwards;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-content { max-width: 500px; }
+
+    .hero-img-wrap {
+      position: relative;
+    }
+
+    .hero-img-wrap img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      border-radius: 16px;
+      box-shadow: 20px 20px 60px rgba(0,0,0,0.12);
+      display: block;
+    }
+
+    .hero-img-wrap::before {
+      content: '';
+      position: absolute;
+      top: -12px; left: -12px;
+      width: 60px; height: 60px;
+      border-top: 3px solid var(--accent2);
+      border-left: 3px solid var(--accent2);
+      border-radius: 2px;
     }
 
     .hero-tag {
@@ -147,13 +176,24 @@
     .post-card {
       background: var(--white);
       border-radius: 12px;
-      padding: 32px;
+      padding: 0;
       cursor: pointer;
       transition: transform 0.3s, box-shadow 0.3s;
       position: relative;
       overflow: hidden;
       border: 1px solid var(--light);
       animation: fadeUp 0.6s ease both;
+    }
+
+    .post-card-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .post-card-body {
+      padding: 24px;
     }
 
     .post-card:hover {
@@ -435,7 +475,8 @@
     @media (max-width: 768px) {
       nav { padding: 18px 20px; }
       .nav-links { display: none; }
-      .hero { padding: 120px 24px 60px; }
+      .hero { grid-template-columns: 1fr; padding: 120px 24px 60px; gap: 32px; }
+      .hero-img-wrap { display: none; }
       .filter-wrap { padding: 0 24px 36px; }
       .posts-wrap { grid-template-columns: 1fr; padding: 0 24px 80px; }
       .post-card.featured { grid-template-columns: 1fr; }
@@ -503,9 +544,14 @@
 
   <!-- HERO -->
   <div class="hero">
-    <span class="hero-tag">📖 Blog học tập</span>
-    <h1>Học thông minh,<br>không phải <em>học nhiều</em></h1>
-    <p>Tổng hợp các mẹo và phương pháp học tập hiệu quả giúp bạn ghi nhớ tốt hơn, quản lý thời gian tốt hơn và đạt kết quả cao hơn.</p>
+    <div class="hero-content">
+      <span class="hero-tag">📖 Blog học tập</span>
+      <h1>Học thông minh,<br>không phải <em>học nhiều</em></h1>
+      <p>Tổng hợp các mẹo và phương pháp học tập hiệu quả giúp bạn ghi nhớ tốt hơn, quản lý thời gian tốt hơn và đạt kết quả cao hơn.</p>
+    </div>
+    <div class="hero-img-wrap">
+      <img src="https://raw.githubusercontent.com/LeePhongV/bloght/main/images/anh-ban-dau.jpg" alt="Blog Học Tập">
+    </div>
   </div>
 
   <!-- FILTER -->
@@ -521,105 +567,120 @@
 
     <!-- FEATURED -->
     <div class="post-card featured" data-cat="hocbai" onclick="openPost('pomodoro')" style="animation-delay:0.1s">
-      <div class="featured-left">
+      <div class="featured-left" style="padding:48px 0 48px 48px;">
         <div class="post-cat">⭐ Nổi bật · Mẹo học bài</div>
         <span class="post-icon">🍅</span>
         <div class="post-title">Kỹ thuật Pomodoro — Học 25 phút, nghỉ 5 phút</div>
         <p class="post-excerpt">Phương pháp quản lý thời gian nổi tiếng nhất thế giới. Chỉ cần một chiếc đồng hồ, bạn có thể tăng năng suất học tập lên gấp đôi.</p>
         <div class="read-more">Đọc ngay →</div>
       </div>
-      <div class="featured-right">
-        <div class="featured-tips-title">Cách thực hiện</div>
-        <ul class="featured-tips">
-          <li><span>01</span> Chọn một bài/môn cần học</li>
-          <li><span>02</span> Đặt hẹn giờ 25 phút, tập trung hoàn toàn</li>
-          <li><span>03</span> Nghỉ 5 phút khi đồng hồ reo</li>
-          <li><span>04</span> Sau 4 lần, nghỉ dài 15-30 phút</li>
-        </ul>
+      <div class="featured-right" style="padding:0; overflow:hidden; border-radius:0 12px 12px 0;">
+        <img src="https://raw.githubusercontent.com/LeePhongV/bloght/main/images/tomato.jpg" alt="Pomodoro" style="width:100%; height:100%; min-height:280px; object-fit:cover; display:block;">
       </div>
     </div>
 
     <!-- POST 2 -->
     <div class="post-card" data-cat="ghichep" onclick="openPost('cornell')" style="animation-delay:0.2s">
-      <div class="post-cat">✏️ Ghi chép & Tóm tắt</div>
-      <span class="post-icon">📓</span>
-      <div class="post-title">Phương pháp ghi chép Cornell</div>
-      <p class="post-excerpt">Chia trang vở thành 3 vùng thông minh giúp bạn ôn tập nhanh hơn và nhớ lâu hơn.</p>
-      <div class="post-meta">
-        <span>5 phút đọc</span>
-        <span class="read-more">Đọc →</span>
+      <img class="post-card-img" src="https://raw.githubusercontent.com/LeePhongV/bloght/main/images/cornell.jpg" alt="Cornell">
+      <div class="post-card-body">
+        <div class="post-cat">✏️ Ghi chép & Tóm tắt</div>
+        <span class="post-icon">📓</span>
+        <div class="post-title">Phương pháp ghi chép Cornell</div>
+        <p class="post-excerpt">Chia trang vở thành 3 vùng thông minh giúp bạn ôn tập nhanh hơn và nhớ lâu hơn.</p>
+        <div class="post-meta">
+          <span>5 phút đọc</span>
+          <span class="read-more">Đọc →</span>
+        </div>
       </div>
     </div>
 
     <!-- POST 3 -->
     <div class="post-card" data-cat="thoigian" onclick="openPost('thoigianbieu')" style="animation-delay:0.3s">
-      <div class="post-cat">⏰ Quản lý thời gian</div>
-      <span class="post-icon">🗓️</span>
-      <div class="post-title">Lập thời gian biểu học tập hiệu quả</div>
-      <p class="post-excerpt">Bí quyết sắp xếp lịch học khoa học để không bao giờ bị áp lực deadline hay quên bài nữa.</p>
-      <div class="post-meta">
-        <span>4 phút đọc</span>
-        <span class="read-more">Đọc →</span>
+      <img class="post-card-img" src="https://raw.githubusercontent.com/LeePhongV/bloght/main/images/thoikhoabieu.jpg" alt="Thời gian biểu">
+      <div class="post-card-body">
+        <div class="post-cat">⏰ Quản lý thời gian</div>
+        <span class="post-icon">🗓️</span>
+        <div class="post-title">Lập thời gian biểu học tập hiệu quả</div>
+        <p class="post-excerpt">Bí quyết sắp xếp lịch học khoa học để không bao giờ bị áp lực deadline hay quên bài nữa.</p>
+        <div class="post-meta">
+          <span>4 phút đọc</span>
+          <span class="read-more">Đọc →</span>
+        </div>
       </div>
     </div>
 
     <!-- POST 4 -->
     <div class="post-card" data-cat="hocbai" onclick="openPost('active')" style="animation-delay:0.4s">
-      <div class="post-cat">📚 Mẹo học bài</div>
-      <span class="post-icon">🧠</span>
-      <div class="post-title">Active Recall — Học chủ động thay vì đọc đi đọc lại</div>
-      <p class="post-excerpt">Thay vì đọc đi đọc lại, hãy tự hỏi bản thân. Kỹ thuật này được khoa học chứng minh là hiệu quả nhất.</p>
-      <div class="post-meta">
-        <span>6 phút đọc</span>
-        <span class="read-more">Đọc →</span>
+      <img class="post-card-img" src="https://raw.githubusercontent.com/LeePhongV/bloght/main/images/active-recall.jpg" alt="Active Recall">
+      <div class="post-card-body">
+        <div class="post-cat">📚 Mẹo học bài</div>
+        <span class="post-icon">🧠</span>
+        <div class="post-title">Active Recall — Học chủ động thay vì đọc đi đọc lại</div>
+        <p class="post-excerpt">Thay vì đọc đi đọc lại, hãy tự hỏi bản thân. Kỹ thuật này được khoa học chứng minh là hiệu quả nhất.</p>
+        <div class="post-meta">
+          <span>6 phút đọc</span>
+          <span class="read-more">Đọc →</span>
+        </div>
       </div>
     </div>
 
     <!-- POST 5 -->
     <div class="post-card" data-cat="ghichep" onclick="openPost('mindmap')" style="animation-delay:0.5s">
-      <div class="post-cat">✏️ Ghi chép & Tóm tắt</div>
-      <span class="post-icon">🗺️</span>
-      <div class="post-title">Vẽ Mind Map để ghi nhớ toàn bộ chương</div>
-      <p class="post-excerpt">Biến một chương sách dày thành một sơ đồ tư duy gọn gàng chỉ trong 15 phút.</p>
-      <div class="post-meta">
-        <span>4 phút đọc</span>
-        <span class="read-more">Đọc →</span>
+      <img class="post-card-img" src="https://raw.githubusercontent.com/LeePhongV/bloght/main/images/mindmap.jpg" alt="Mind Map">
+      <div class="post-card-body">
+        <div class="post-cat">✏️ Ghi chép & Tóm tắt</div>
+        <span class="post-icon">🗺️</span>
+        <div class="post-title">Vẽ Mind Map để ghi nhớ toàn bộ chương</div>
+        <p class="post-excerpt">Biến một chương sách dày thành một sơ đồ tư duy gọn gàng chỉ trong 15 phút.</p>
+        <div class="post-meta">
+          <span>4 phút đọc</span>
+          <span class="read-more">Đọc →</span>
+        </div>
       </div>
     </div>
 
     <!-- POST 6 -->
     <div class="post-card" data-cat="thoigian" onclick="openPost('distraction')" style="animation-delay:0.6s">
-      <div class="post-cat">⏰ Quản lý thời gian</div>
-      <span class="post-icon">📵</span>
-      <div class="post-title">Loại bỏ phân tâm khi học — Tắt điện thoại đúng cách</div>
-      <p class="post-excerpt">Điện thoại là kẻ thù số 1 của việc học. Đây là cách kiểm soát nó mà không cần ý chí sắt đá.</p>
-      <div class="post-meta">
-        <span>3 phút đọc</span>
-        <span class="read-more">Đọc →</span>
+      <img class="post-card-img" src="https://raw.githubusercontent.com/LeePhongV/bloght/main/images/nophone.jpg" alt="No Phone">
+      <div class="post-card-body">
+        <div class="post-cat">⏰ Quản lý thời gian</div>
+        <span class="post-icon">📵</span>
+        <div class="post-title">Loại bỏ phân tâm khi học — Tắt điện thoại đúng cách</div>
+        <p class="post-excerpt">Điện thoại là kẻ thù số 1 của việc học. Đây là cách kiểm soát nó mà không cần ý chí sắt đá.</p>
+        <div class="post-meta">
+          <span>3 phút đọc</span>
+          <span class="read-more">Đọc →</span>
+        </div>
       </div>
     </div>
 
     <!-- POST 7 -->
     <div class="post-card" data-cat="thoigian" onclick="openPost('ngunghi')" style="animation-delay:0.7s">
-      <div class="post-cat">⏰ Quản lý thời gian</div>
-      <span class="post-icon">😴</span>
-      <div class="post-title">Nghỉ ngơi và ngủ đủ giấc — Kỹ năng học tập quan trọng nhất</div>
-      <p class="post-excerpt">Ngủ đủ giấc không phải là lười biếng — đó là cách não bộ củng cố kiến thức và tái tạo năng lượng hiệu quả nhất.</p>
-      <div class="post-meta">
-        <span>4 phút đọc</span>
-        <span class="read-more">Đọc →</span>
+      <img class="post-card-img" src="https://raw.githubusercontent.com/LeePhongV/bloght/main/images/Anh-ngu.jpg" alt="Nghỉ ngơi">
+      <div class="post-card-body">
+        <div class="post-cat">⏰ Quản lý thời gian</div>
+        <span class="post-icon">😴</span>
+        <div class="post-title">Nghỉ ngơi và ngủ đủ giấc — Kỹ năng học tập quan trọng nhất</div>
+        <p class="post-excerpt">Ngủ đủ giấc không phải là lười biếng — đó là cách não bộ củng cố kiến thức và tái tạo năng lượng hiệu quả nhất.</p>
+        <div class="post-meta">
+          <span>4 phút đọc</span>
+          <span class="read-more">Đọc →</span>
+        </div>
       </div>
     </div>
 
     <!-- POST 8 -->
     <div class="post-card" data-cat="hocbai" onclick="openPost('hocnhom')" style="animation-delay:0.8s">
-      <div class="post-cat">📚 Mẹo học bài</div>
-      <span class="post-icon">👥</span>
-      <div class="post-title">Học nhóm — Bí quyết hiểu bài nhanh và nhớ lâu hơn</div>
-      <p class="post-excerpt">Học cùng bạn bè không chỉ vui hơn mà còn giúp bạn hiểu sâu hơn, lấp đầy lỗ hổng kiến thức và duy trì động lực.</p>
-      <div class="post-meta">
-        <span>4 phút đọc</span>
-        <span class="read-more">Đọc →</span>
+      <img class="post-card-img" src="https://raw.githubusercontent.com/LeePhongV/bloght/main/images/hoc-nhom.jpg" alt="Học nhóm">
+      <div class="post-card-body">
+        <div class="post-cat">📚 Mẹo học bài</div>
+        <span class="post-icon">👥</span>
+        <div class="post-title">Học nhóm — Bí quyết hiểu bài nhanh và nhớ lâu hơn</div>
+        <p class="post-excerpt">Học cùng bạn bè không chỉ vui hơn mà còn giúp bạn hiểu sâu hơn, lấp đầy lỗ hổng kiến thức và duy trì động lực.</p>
+        <div class="post-meta">
+          <span>4 phút đọc</span>
+          <span class="read-more">Đọc →</span>
+        </div>
       </div>
     </div>
 
