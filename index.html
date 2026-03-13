@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudyLog — Mẹo Học Tập</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📖</text></svg>">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f8f7f4;
+      --black: #111;
+      --gray: #888;
+      --light: #eeecea;
+      --accent: #2d6a4f;
+      --accent2: #52b788;
+      --white: #fff;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--black);
+      font-family: 'Outfit', sans-serif;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      padding: 20px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      background: rgba(248,247,244,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--light);
+    }
+
+    .nav-logo {
+      font-family: 'Lora', serif;
+      font-size: 20px;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--gray);
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      padding: 160px 60px 80px;
+      max-width: 860px;
+      margin: 0 auto;
+      animation: fadeUp 0.8s ease forwards;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent2);
+      background: #d8f3dc;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 {
+      font-family: 'Lora', serif;
+      font-size: clamp(40px, 6vw, 72px);
+      line-height: 1.1;
+      color: var(--black);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero p {
+      font-size: 17px;
+      line-height: 1.8;
+      color: #666;
+      max-width: 560px;
+    }
+
+    /* FILTER TABS */
+    .filter-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 60px 48px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 8px 20px;
+      border-radius: 100px;
+      border: 1px solid var(--light);
+      background: var(--white);
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+      color: var(--gray);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    /* POSTS GRID */
+    .posts-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 60px 100px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .post-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 32px;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--light);
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .post-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.08);
+    }
+
+    .post-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px;
+      height: 100%;
+      background: var(--accent2);
+      transform: scaleY(0);
+      transition: transform 0.3s;
+      transform-origin: bottom;
+    }
+
+    .post-card:hover::before { transform: scaleY(1); }
+
+    .post-cat {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 12px;
+    }
+
+    .post-icon {
+      font-size: 36px;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .post-title {
+      font-family: 'Lora', serif;
+      font-size: 20px;
+      line-height: 1.4;
+      color: var(--black);
+      margin-bottom: 12px;
+    }
+
+    .post-excerpt {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--gray);
+      margin-bottom: 20px;
+    }
+
+    .post-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: #bbb;
+    }
+
+    .read-more {
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    /* FEATURED POST (full width) */
+    .post-card.featured {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      padding: 48px;
+    }
+
+    .featured-left .post-icon { font-size: 56px; }
+    .featured-left .post-title { font-size: 28px; }
+    .featured-left .post-excerpt { font-size: 15px; }
+
+    .featured-right {
+      background: #f0faf4;
+      border-radius: 8px;
+      padding: 28px;
+    }
+
+    .featured-tips-title {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .featured-tips {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .featured-tips li {
+      font-size: 14px;
+      color: #444;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      line-height: 1.6;
+    }
+
+    .featured-tips li span {
+      color: var(--accent2);
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    /* POPUP */
+    .popup-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(6px);
+    }
+
+    .popup-overlay.active { display: flex; }
+
+    .popup-box {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 48px;
+      max-width: 560px;
+      width: 92%;
+      max-height: 85vh;
+      overflow-y: auto;
+      position: relative;
+      animation: popUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 32px 80px rgba(0,0,0,0.2);
+    }
+
+    .popup-close {
+      position: absolute;
+      top: 20px; right: 24px;
+      font-size: 20px;
+      cursor: pointer;
+      color: var(--gray);
+      background: none;
+      border: none;
+      transition: color 0.2s;
+    }
+
+    .popup-close:hover { color: var(--black); }
+
+    .popup-cat {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 8px;
+    }
+
+    .popup-icon { font-size: 52px; display: block; margin-bottom: 16px; }
+
+    .popup-title {
+      font-family: 'Lora', serif;
+      font-size: 28px;
+      line-height: 1.3;
+      margin-bottom: 16px;
+    }
+
+    .popup-divider {
+      height: 1px;
+      background: var(--light);
+      margin: 20px 0;
+    }
+
+    .popup-body {
+      font-size: 15px;
+      line-height: 1.9;
+      color: #444;
+    }
+
+    .popup-body p { margin-bottom: 14px; }
+
+    .tip-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin: 16px 0;
+    }
+
+    .tip-list li {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      font-size: 15px;
+      line-height: 1.7;
+      color: #444;
+    }
+
+    .tip-num {
+      width: 28px;
+      height: 28px;
+      background: #d8f3dc;
+      color: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--black);
+      color: #666;
+      text-align: center;
+      padding: 36px;
+      font-size: 13px;
+      letter-spacing: 1px;
+    }
+
+    footer span { color: var(--accent2); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes popUp {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 18px 20px; }
+      .nav-links { display: none; }
+      .hero { padding: 120px 24px 60px; }
+      .filter-wrap { padding: 0 24px 36px; }
+      .posts-wrap { grid-template-columns: 1fr; padding: 0 24px 80px; }
+      .post-card.featured { grid-template-columns: 1fr; }
+      .popup-box { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">StudyLog ✦</a>
+    <ul class="nav-links">
+      <li><a href="#posts">Bài viết</a></li>
+      <li><a href="#posts">Chủ đề</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <span class="hero-tag">📖 Blog học tập</span>
+    <h1>Học thông minh,<br>không phải <em>học nhiều</em></h1>
+    <p>Tổng hợp các mẹo và phương pháp học tập hiệu quả giúp bạn ghi nhớ tốt hơn, quản lý thời gian tốt hơn và đạt kết quả cao hơn.</p>
+  </div>
+
+  <!-- FILTER -->
+  <div class="filter-wrap" id="posts">
+    <button class="filter-btn active" onclick="filterPosts('all', this)">Tất cả</button>
+    <button class="filter-btn" onclick="filterPosts('hocbai', this)">📚 Mẹo học bài</button>
+    <button class="filter-btn" onclick="filterPosts('thoigian', this)">⏰ Quản lý thời gian</button>
+    <button class="filter-btn" onclick="filterPosts('ghichep', this)">✏️ Ghi chép</button>
+  </div>
+
+  <!-- POSTS -->
+  <div class="posts-wrap">
+
+    <!-- FEATURED -->
+    <div class="post-card featured" data-cat="hocbai" onclick="openPost('pomodoro')" style="animation-delay:0.1s">
+      <div class="featured-left">
+        <div class="post-cat">⭐ Nổi bật · Mẹo học bài</div>
+        <span class="post-icon">🍅</span>
+        <div class="post-title">Kỹ thuật Pomodoro — Học 25 phút, nghỉ 5 phút</div>
+        <p class="post-excerpt">Phương pháp quản lý thời gian nổi tiếng nhất thế giới. Chỉ cần một chiếc đồng hồ, bạn có thể tăng năng suất học tập lên gấp đôi.</p>
+        <div class="read-more">Đọc ngay →</div>
+      </div>
+      <div class="featured-right">
+        <div class="featured-tips-title">Cách thực hiện</div>
+        <ul class="featured-tips">
+          <li><span>01</span> Chọn một bài/môn cần học</li>
+          <li><span>02</span> Đặt hẹn giờ 25 phút, tập trung hoàn toàn</li>
+          <li><span>03</span> Nghỉ 5 phút khi đồng hồ reo</li>
+          <li><span>04</span> Sau 4 lần, nghỉ dài 15-30 phút</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- POST 2 -->
+    <div class="post-card" data-cat="ghichep" onclick="openPost('cornell')" style="animation-delay:0.2s">
+      <div class="post-cat">✏️ Ghi chép & Tóm tắt</div>
+      <span class="post-icon">📓</span>
+      <div class="post-title">Phương pháp ghi chép Cornell</div>
+      <p class="post-excerpt">Chia trang vở thành 3 vùng thông minh giúp bạn ôn tập nhanh hơn và nhớ lâu hơn.</p>
+      <div class="post-meta">
+        <span>5 phút đọc</span>
+        <span class="read-more">Đọc →</span>
+      </div>
+    </div>
+
+    <!-- POST 3 -->
+    <div class="post-card" data-cat="thoigian" onclick="openPost('thoigianbieu')" style="animation-delay:0.3s">
+      <div class="post-cat">⏰ Quản lý thời gian</div>
+      <span class="post-icon">🗓️</span>
+      <div class="post-title">Lập thời gian biểu học tập hiệu quả</div>
+      <p class="post-excerpt">Bí quyết sắp xếp lịch học khoa học để không bao giờ bị áp lực deadline hay quên bài nữa.</p>
+      <div class="post-meta">
+        <span>4 phút đọc</span>
+        <span class="read-more">Đọc →</span>
+      </div>
+    </div>
+
+    <!-- POST 4 -->
+    <div class="post-card" data-cat="hocbai" onclick="openPost('active')" style="animation-delay:0.4s">
+      <div class="post-cat">📚 Mẹo học bài</div>
+      <span class="post-icon">🧠</span>
+      <div class="post-title">Active Recall — Học chủ động thay vì đọc đi đọc lại</div>
+      <p class="post-excerpt">Thay vì đọc đi đọc lại, hãy tự hỏi bản thân. Kỹ thuật này được khoa học chứng minh là hiệu quả nhất.</p>
+      <div class="post-meta">
+        <span>6 phút đọc</span>
+        <span class="read-more">Đọc →</span>
+      </div>
+    </div>
+
+    <!-- POST 5 -->
+    <div class="post-card" data-cat="ghichep" onclick="openPost('mindmap')" style="animation-delay:0.5s">
+      <div class="post-cat">✏️ Ghi chép & Tóm tắt</div>
+      <span class="post-icon">🗺️</span>
+      <div class="post-title">Vẽ Mind Map để ghi nhớ toàn bộ chương</div>
+      <p class="post-excerpt">Biến một chương sách dày thành một sơ đồ tư duy gọn gàng chỉ trong 15 phút.</p>
+      <div class="post-meta">
+        <span>4 phút đọc</span>
+        <span class="read-more">Đọc →</span>
+      </div>
+    </div>
+
+    <!-- POST 6 -->
+    <div class="post-card" data-cat="thoigian" onclick="openPost('distraction')" style="animation-delay:0.6s">
+      <div class="post-cat">⏰ Quản lý thời gian</div>
+      <span class="post-icon">📵</span>
+      <div class="post-title">Loại bỏ phân tâm khi học — Tắt điện thoại đúng cách</div>
+      <p class="post-excerpt">Điện thoại là kẻ thù số 1 của việc học. Đây là cách kiểm soát nó mà không cần ý chí sắt đá.</p>
+      <div class="post-meta">
+        <span>3 phút đọc</span>
+        <span class="read-more">Đọc →</span>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>✦ <span>StudyLog</span> — Blog mẹo học tập dành cho học sinh ✦</p>
+  </footer>
+
+  <!-- ===== POPUPS ===== -->
+
+  <!-- Pomodoro -->
+  <div class="popup-overlay" id="popup-pomodoro" onclick="closePost('pomodoro')">
+    <div class="popup-box" onclick="event.stopPropagation()">
+      <button class="popup-close" onclick="closePost('pomodoro')">✕</button>
+      <div class="popup-cat">⭐ Nổi bật · Mẹo học bài</div>
+      <span class="popup-icon">🍅</span>
+      <div class="popup-title">Kỹ thuật Pomodoro</div>
+      <div class="popup-divider"></div>
+      <div class="popup-body">
+        <p>Pomodoro là phương pháp quản lý thời gian do Francesco Cirillo phát triển vào cuối những năm 1980. Tên gọi lấy từ chiếc đồng hồ hẹn giờ hình quả cà chua (pomodoro trong tiếng Ý).</p>
+        <ul class="tip-list">
+          <li><div class="tip-num">1</div> <span>Chọn một nhiệm vụ cụ thể muốn hoàn thành</span></li>
+          <li><div class="tip-num">2</div> <span>Đặt hẹn giờ 25 phút và tập trung hoàn toàn, không làm gì khác</span></li>
+          <li><div class="tip-num">3</div> <span>Khi đồng hồ reo, đánh dấu một pomodoro đã hoàn thành</span></li>
+          <li><div class="tip-num">4</div> <span>Nghỉ ngơi 5 phút — đứng dậy, uống nước, giãn cơ</span></li>
+          <li><div class="tip-num">5</div> <span>Sau 4 pomodoro, nghỉ dài 15–30 phút để não hồi phục</span></li>
+        </ul>
+        <p>💡 <strong>Mẹo:</strong> Trong 25 phút đó, tắt điện thoại, đóng tab mạng xã hội và chỉ tập trung vào một việc duy nhất.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cornell -->
+  <div class="popup-overlay" id="popup-cornell" onclick="closePost('cornell')">
+    <div class="popup-box" onclick="event.stopPropagation()">
+      <button class="popup-close" onclick="closePost('cornell')">✕</button>
+      <div class="popup-cat">✏️ Ghi chép & Tóm tắt</div>
+      <span class="popup-icon">📓</span>
+      <div class="popup-title">Phương pháp ghi chép Cornell</div>
+      <div class="popup-divider"></div>
+      <div class="popup-body">
+        <p>Cornell là hệ thống ghi chép được phát triển tại Đại học Cornell. Chia trang vở thành 3 phần:</p>
+        <ul class="tip-list">
+          <li><div class="tip-num">1</div> <span><strong>Cột ghi chú (phải, 70%):</strong> Ghi nội dung bài học trong lúc nghe giảng</span></li>
+          <li><div class="tip-num">2</div> <span><strong>Cột từ khóa (trái, 30%):</strong> Sau giờ học, viết câu hỏi hoặc từ khóa tóm tắt</span></li>
+          <li><div class="tip-num">3</div> <span><strong>Phần tóm tắt (dưới cùng):</strong> Viết 2–3 câu tóm tắt toàn bộ nội dung trang đó</span></li>
+        </ul>
+        <p>💡 <strong>Cách ôn tập:</strong> Che cột ghi chú, chỉ nhìn cột từ khóa và cố gắng nhớ lại nội dung. Đây là cách luyện tập Active Recall hiệu quả!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Thời gian biểu -->
+  <div class="popup-overlay" id="popup-thoigianbieu" onclick="closePost('thoigianbieu')">
+    <div class="popup-box" onclick="event.stopPropagation()">
+      <button class="popup-close" onclick="closePost('thoigianbieu')">✕</button>
+      <div class="popup-cat">⏰ Quản lý thời gian</div>
+      <span class="popup-icon">🗓️</span>
+      <div class="popup-title">Lập thời gian biểu học tập</div>
+      <div class="popup-divider"></div>
+      <div class="popup-body">
+        <p>Một thời gian biểu tốt không phải là lịch học dày đặc mà là lịch học <strong>thực tế và bền vững</strong>.</p>
+        <ul class="tip-list">
+          <li><div class="tip-num">1</div> <span>Liệt kê tất cả môn học và deadline trong tuần mỗi tối Chủ nhật</span></li>
+          <li><div class="tip-num">2</div> <span>Ưu tiên môn khó hoặc gần thi vào khung giờ não hoạt động tốt nhất (thường buổi sáng)</span></li>
+          <li><div class="tip-num">3</div> <span>Đặt mục tiêu cụ thể cho mỗi buổi học, không chỉ "học Toán 2 tiếng"</span></li>
+          <li><div class="tip-num">4</div> <span>Luôn để buffer time (thời gian dự phòng) 30 phút mỗi ngày</span></li>
+          <li><div class="tip-num">5</div> <span>Đừng lên lịch học quá 6 tiếng/ngày — não cần nghỉ ngơi để củng cố kiến thức</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Active Recall -->
+  <div class="popup-overlay" id="popup-active" onclick="closePost('active')">
+    <div class="popup-box" onclick="event.stopPropagation()">
+      <button class="popup-close" onclick="closePost('active')">✕</button>
+      <div class="popup-cat">📚 Mẹo học bài</div>
+      <span class="popup-icon">🧠</span>
+      <div class="popup-title">Active Recall — Học chủ động</div>
+      <div class="popup-divider"></div>
+      <div class="popup-body">
+        <p>Active Recall là kỹ thuật <strong>tự kiểm tra bản thân</strong> thay vì đọc đi đọc lại. Nghiên cứu khoa học chứng minh đây là cách học hiệu quả nhất.</p>
+        <ul class="tip-list">
+          <li><div class="tip-num">1</div> <span>Đọc qua bài một lần để nắm tổng quan</span></li>
+          <li><div class="tip-num">2</div> <span>Đóng sách lại và viết ra tất cả những gì bạn nhớ được</span></li>
+          <li><div class="tip-num">3</div> <span>So sánh với sách, đánh dấu những gì bị quên</span></li>
+          <li><div class="tip-num">4</div> <span>Lặp lại với phần bị quên sau 1 ngày, 3 ngày, 1 tuần</span></li>
+        </ul>
+        <p>💡 <strong>Thực hành đơn giản:</strong> Sau mỗi buổi học, gấp vở lại và thử kể lại bằng lời những gì vừa học. Nếu không kể được, đó là phần cần học lại!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mind Map -->
+  <div class="popup-overlay" id="popup-mindmap" onclick="closePost('mindmap')">
+    <div class="popup-box" onclick="event.stopPropagation()">
+      <button class="popup-close" onclick="closePost('mindmap')">✕</button>
+      <div class="popup-cat">✏️ Ghi chép & Tóm tắt</div>
+      <span class="popup-icon">🗺️</span>
+      <div class="popup-title">Vẽ Mind Map hiệu quả</div>
+      <div class="popup-divider"></div>
+      <div class="popup-body">
+        <p>Mind Map (sơ đồ tư duy) giúp não bộ nhìn thấy toàn bộ mối liên hệ giữa các kiến thức, thay vì học từng phần rời rạc.</p>
+        <ul class="tip-list">
+          <li><div class="tip-num">1</div> <span>Viết chủ đề chính vào giữa trang, khoanh tròn lại</span></li>
+          <li><div class="tip-num">2</div> <span>Vẽ các nhánh chính ra xung quanh — mỗi nhánh là một ý lớn</span></li>
+          <li><div class="tip-num">3</div> <span>Từ mỗi nhánh chính, vẽ tiếp nhánh phụ với chi tiết nhỏ hơn</span></li>
+          <li><div class="tip-num">4</div> <span>Dùng màu sắc và hình ảnh nhỏ để tăng khả năng ghi nhớ</span></li>
+          <li><div class="tip-num">5</div> <span>Chỉ viết từ khóa, không viết câu dài</span></li>
+        </ul>
+        <p>💡 <strong>Mẹo:</strong> Vẽ Mind Map sau khi học xong mà không nhìn sách — đây cũng là một cách luyện Active Recall!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Distraction -->
+  <div class="popup-overlay" id="popup-distraction" onclick="closePost('distraction')">
+    <div class="popup-box" onclick="event.stopPropagation()">
+      <button class="popup-close" onclick="closePost('distraction')">✕</button>
+      <div class="popup-cat">⏰ Quản lý thời gian</div>
+      <span class="popup-icon">📵</span>
+      <div class="popup-title">Loại bỏ phân tâm khi học</div>
+      <div class="popup-divider"></div>
+      <div class="popup-body">
+        <p>Trung bình mỗi lần bị phân tâm, não cần <strong>23 phút</strong> để tập trung trở lại hoàn toàn. Đây là cách kiểm soát:</p>
+        <ul class="tip-list">
+          <li><div class="tip-num">1</div> <span>Để điện thoại ở phòng khác hoặc trong ngăn kéo, không để trên bàn</span></li>
+          <li><div class="tip-num">2</div> <span>Dùng chế độ "Không làm phiền" hoặc app chặn mạng xã hội</span></li>
+          <li><div class="tip-num">3</div> <span>Báo với gia đình/bạn bè rằng bạn đang học trong X tiếng</span></li>
+          <li><div class="tip-num">4</div> <span>Nếu có ý nghĩ lan man, viết nhanh ra giấy rồi quay lại học</span></li>
+          <li><div class="tip-num">5</div> <span>Tạo không gian học cố định — não sẽ tự động vào trạng thái học khi ngồi đúng chỗ đó</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openPost(id) {
+      document.getElementById('popup-' + id).classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePost(id) {
+      document.getElementById('popup-' + id).classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function filterPosts(cat, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.post-card').forEach(card => {
+        if (cat === 'all' || card.dataset.cat === cat) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.popup-overlay.active').forEach(el => {
+          el.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>
