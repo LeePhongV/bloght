@@ -372,6 +372,43 @@
       flex-shrink: 0;
     }
 
+    /* SOURCE LINK - THÊM MỚI */
+    .source-label {
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-top: 20px;
+      margin-bottom: 8px;
+    }
+
+    .source-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      background: #f0faf4;
+      border: 1px solid #b7e4c7;
+      border-radius: 8px;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+
+    .source-link:hover {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    .source-link.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+      cursor: default;
+    }
+
     /* FOOTER */
     footer {
       background: var(--black);
@@ -404,6 +441,7 @@
       .post-card.featured { grid-template-columns: 1fr; }
       .popup-box { padding: 32px 24px; }
     }
+
   .nav-tooltip-wrap {
   position: relative;
   cursor: default;
@@ -440,7 +478,8 @@
 }
 .nav-tooltip-wrap:hover .nav-tooltip {
   display: block;
-}</style>
+}
+  </style>
 </head>
 <body>
 
@@ -448,17 +487,17 @@
   <nav>
     <a href="#" class="nav-logo">Blog Học Tập</a>
     <ul class="nav-links">
-<li>
-  <span class="nav-tooltip-wrap">Lê Đức Phong — 33
-    <span class="nav-tooltip">💙 Cảm ơn bạn đã ghé thăm blog của chúng mình!</span>
-  </span>
-</li>
-<li>
-  <span class="nav-tooltip-wrap">Nguyễn Ngọc Quỳnh Nhi — 29
-    <span class="nav-tooltip">💗 Hy vọng blog này giúp ích cho bạn nhé~</span>
-  </span>
-</li>
-<li><span style="color:var(--gray); font-size:13px; letter-spacing:1px; text-transform:uppercase; cursor:default;">Lớp 12C15</span></li>
+      <li>
+        <span class="nav-tooltip-wrap">Lê Đức Phong — 33
+          <span class="nav-tooltip">💙 Cảm ơn bạn đã ghé thăm blog của chúng mình!</span>
+        </span>
+      </li>
+      <li>
+        <span class="nav-tooltip-wrap">Nguyễn Ngọc Quỳnh Nhi — 29
+          <span class="nav-tooltip">💗 Hy vọng blog này giúp ích cho bạn nhé~</span>
+        </span>
+      </li>
+      <li><span style="color:var(--gray); font-size:13px; letter-spacing:1px; text-transform:uppercase; cursor:default;">Lớp 12C15</span></li>
     </ul>
   </nav>
 
@@ -586,6 +625,8 @@
           <li><div class="tip-num">5</div> <span>Sau 4 pomodoro, nghỉ dài 15–30 phút để não hồi phục</span></li>
         </ul>
         <p>💡 <strong>Mẹo:</strong> Trong 25 phút đó, tắt điện thoại, đóng tab mạng xã hội và chỉ tập trung vào một việc duy nhất.</p>
+        <div class="source-label">📎 Nguồn tham khảo</div>
+        <a class="source-link" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12292963/" target="_blank">🔬 Nghiên cứu khoa học về Pomodoro — PMC</a>
       </div>
     </div>
   </div>
@@ -606,6 +647,8 @@
           <li><div class="tip-num">3</div> <span><strong>Phần tóm tắt (dưới cùng):</strong> Viết 2–3 câu tóm tắt toàn bộ nội dung trang đó</span></li>
         </ul>
         <p>💡 <strong>Cách ôn tập:</strong> Che cột ghi chú, chỉ nhìn cột từ khóa và cố gắng nhớ lại nội dung. Đây là cách luyện tập Active Recall hiệu quả!</p>
+        <div class="source-label">📎 Nguồn tham khảo</div>
+        <a class="source-link" href="https://lsc.cornell.edu/how-to-study/taking-notes/cornell-note-taking-system/" target="_blank">🏫 Hệ thống Cornell chính thức — Cornell University</a>
       </div>
     </div>
   </div>
@@ -627,6 +670,8 @@
           <li><div class="tip-num">4</div> <span>Luôn để buffer time (thời gian dự phòng) 30 phút mỗi ngày</span></li>
           <li><div class="tip-num">5</div> <span>Đừng lên lịch học quá 6 tiếng/ngày — não cần nghỉ ngơi để củng cố kiến thức</span></li>
         </ul>
+        <div class="source-label">📎 Nguồn tham khảo</div>
+        <a class="source-link" href="https://hotis.vn/loi-ich-cua-viec-su-dung-thoi-khoa-bieu-cho-hoc-sinh" target="_blank">📅 Lợi ích của thời khóa biểu — Hotis.vn</a>
       </div>
     </div>
   </div>
@@ -648,6 +693,8 @@
           <li><div class="tip-num">4</div> <span>Lặp lại với phần bị quên sau 1 ngày, 3 ngày, 1 tuần</span></li>
         </ul>
         <p>💡 <strong>Thực hành đơn giản:</strong> Sau mỗi buổi học, gấp vở lại và thử kể lại bằng lời những gì vừa học. Nếu không kể được, đó là phần cần học lại!</p>
+        <div class="source-label">📎 Nguồn tham khảo</div>
+        <a class="source-link" href="https://thepresentwriter.com/on-thi/" target="_blank">📖 Phương pháp ôn thi hiệu quả — The Present Writer</a>
       </div>
     </div>
   </div>
@@ -670,6 +717,8 @@
           <li><div class="tip-num">5</div> <span>Chỉ viết từ khóa, không viết câu dài</span></li>
         </ul>
         <p>💡 <strong>Mẹo:</strong> Vẽ Mind Map sau khi học xong mà không nhìn sách — đây cũng là một cách luyện Active Recall!</p>
+        <div class="source-label">📎 Nguồn tham khảo</div>
+        <a class="source-link" href="https://caodang.fpt.edu.vn/tin-tuc-poly/loi-ich-cua-viec-su-dung-mindmap-de-tom-tat-bai-hoc.html" target="_blank">🗺️ Lợi ích của Mind Map — FPT Polytechnic</a>
       </div>
     </div>
   </div>
@@ -691,6 +740,8 @@
           <li><div class="tip-num">4</div> <span>Nếu có ý nghĩ lan man, viết nhanh ra giấy rồi quay lại học</span></li>
           <li><div class="tip-num">5</div> <span>Tạo không gian học cố định — não sẽ tự động vào trạng thái học khi ngồi đúng chỗ đó</span></li>
         </ul>
+        <div class="source-label">📎 Nguồn tham khảo</div>
+        <a class="source-link disabled">🔍 Đang cập nhật nguồn tham khảo...</a>
       </div>
     </div>
   </div>
@@ -729,11 +780,4 @@
   </script>
 
 </body>
-
 </html>
-
-
-
-
-
-
