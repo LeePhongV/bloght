@@ -416,6 +416,34 @@
       grid-column: 1 / -1;
       max-width: 50%;
     }
+
+    /* VIDEO EMBED */
+    .video-label {
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-top: 24px;
+      margin-bottom: 10px;
+    }
+
+    .video-wrap {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #000;
+      margin-bottom: 16px;
+    }
+
+    .video-wrap iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+
     .source-label {
       font-size: 11px;
       letter-spacing: 1.5px;
@@ -713,6 +741,10 @@
           <li><div class="tip-num">5</div> <span>Sau 4 pomodoro, nghỉ dài 15–30 phút để não hồi phục</span></li>
         </ul>
         <p>💡 <strong>Mẹo:</strong> Trong 25 phút đó, tắt điện thoại, đóng tab mạng xã hội và chỉ tập trung vào một việc duy nhất.</p>
+        <div class="video-label">🎬 Video tham khảo</div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/3FjIuPMQzxo" allowfullscreen loading="lazy"></iframe>
+        </div>
         <div class="source-label">📎 Nguồn tham khảo</div>
         <a class="source-link" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12292963/" target="_blank">🔬 Nghiên cứu khoa học về Pomodoro — PMC</a>
       </div>
@@ -735,6 +767,10 @@
           <li><div class="tip-num">3</div> <span><strong>Phần tóm tắt (dưới cùng):</strong> Viết 2–3 câu tóm tắt toàn bộ nội dung trang đó</span></li>
         </ul>
         <p>💡 <strong>Cách ôn tập:</strong> Che cột ghi chú, chỉ nhìn cột từ khóa và cố gắng nhớ lại nội dung. Đây là cách luyện tập Active Recall hiệu quả!</p>
+        <div class="video-label">🎬 Video tham khảo</div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/nX-xshA_0m8" allowfullscreen loading="lazy"></iframe>
+        </div>
         <div class="source-label">📎 Nguồn tham khảo</div>
         <a class="source-link" href="https://lsc.cornell.edu/how-to-study/taking-notes/cornell-note-taking-system/" target="_blank">🏫 Hệ thống Cornell chính thức — Cornell University</a>
       </div>
@@ -758,6 +794,10 @@
           <li><div class="tip-num">4</div> <span>Luôn để buffer time (thời gian dự phòng) 30 phút mỗi ngày</span></li>
           <li><div class="tip-num">5</div> <span>Đừng lên lịch học quá 6 tiếng/ngày — não cần nghỉ ngơi để củng cố kiến thức</span></li>
         </ul>
+        <div class="video-label">🎬 Video tham khảo</div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/5EnYhB6lolE" allowfullscreen loading="lazy"></iframe>
+        </div>
         <div class="source-label">📎 Nguồn tham khảo</div>
         <a class="source-link" href="https://hotis.vn/loi-ich-cua-viec-su-dung-thoi-khoa-bieu-cho-hoc-sinh" target="_blank">📅 Lợi ích của thời khóa biểu — Hotis.vn</a>
       </div>
@@ -781,6 +821,10 @@
           <li><div class="tip-num">4</div> <span>Lặp lại với phần bị quên sau 1 ngày, 3 ngày, 1 tuần</span></li>
         </ul>
         <p>💡 <strong>Thực hành đơn giản:</strong> Sau mỗi buổi học, gấp vở lại và thử kể lại bằng lời những gì vừa học. Nếu không kể được, đó là phần cần học lại!</p>
+        <div class="video-label">🎬 Video tham khảo</div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/IyvlgRf7u3Y" allowfullscreen loading="lazy"></iframe>
+        </div>
         <div class="source-label">📎 Nguồn tham khảo</div>
         <a class="source-link" href="https://thepresentwriter.com/on-thi/" target="_blank">📖 Phương pháp ôn thi hiệu quả — The Present Writer</a>
       </div>
@@ -805,6 +849,10 @@
           <li><div class="tip-num">5</div> <span>Chỉ viết từ khóa, không viết câu dài</span></li>
         </ul>
         <p>💡 <strong>Mẹo:</strong> Vẽ Mind Map sau khi học xong mà không nhìn sách — đây cũng là một cách luyện Active Recall!</p>
+        <div class="video-label">🎬 Video tham khảo</div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/sdsZaxeBW90" allowfullscreen loading="lazy"></iframe>
+        </div>
         <div class="source-label">📎 Nguồn tham khảo</div>
         <a class="source-link" href="https://caodang.fpt.edu.vn/tin-tuc-poly/loi-ich-cua-viec-su-dung-mindmap-de-tom-tat-bai-hoc.html" target="_blank">🗺️ Lợi ích của Mind Map — FPT Polytechnic</a>
       </div>
@@ -828,6 +876,10 @@
           <li><div class="tip-num">4</div> <span>Nếu có ý nghĩ lan man, viết nhanh ra giấy rồi quay lại học</span></li>
           <li><div class="tip-num">5</div> <span>Tạo không gian học cố định — não sẽ tự động vào trạng thái học khi ngồi đúng chỗ đó</span></li>
         </ul>
+        <div class="video-label">🎬 Video tham khảo</div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/zsRRvbEi4qg" allowfullscreen loading="lazy"></iframe>
+        </div>
         <div class="source-label">📎 Nguồn tham khảo</div>
         <a class="source-link disabled">🔍 Đang cập nhật nguồn tham khảo...</a>
       </div>
@@ -852,6 +904,10 @@
           <li><div class="tip-num">5</div> <span>Ôn bài nhẹ trước khi ngủ — não sẽ tự xử lý và ghi nhớ kiến thức đó trong giấc ngủ</span></li>
         </ul>
         <p>💡 <strong>Nhớ:</strong> Thức đêm học bài trước kỳ thi thực ra làm giảm khả năng nhớ bài hơn là giúp ích!</p>
+        <div class="video-label">🎬 Video tham khảo</div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/R2ciPGVQHio" allowfullscreen loading="lazy"></iframe>
+        </div>
         <div class="source-label">📎 Nguồn tham khảo</div>
         <a class="source-link" href="https://ieltsthuyanh.com/tai-sao-nghi-ngoi-lai-la-ky-nang-hoc-tap-quan-trong-nhat/" target="_blank">😴 Tại sao nghỉ ngơi là kỹ năng quan trọng nhất — IELTS Thuy Anh</a>
       </div>
@@ -876,6 +932,10 @@
           <li><div class="tip-num">5</div> <span>Giới hạn thời gian họp nhóm rõ ràng — có deadline giúp cả nhóm tập trung hơn</span></li>
         </ul>
         <p>💡 <strong>Mẹo:</strong> Nếu bạn giải thích được cho người khác hiểu, chứng tỏ bạn đã thực sự nắm vững kiến thức đó!</p>
+        <div class="video-label">🎬 Video tham khảo</div>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/8bMc-YBoFoU" allowfullscreen loading="lazy"></iframe>
+        </div>
         <div class="source-label">📎 Nguồn tham khảo</div>
         <a class="source-link" href="https://hoctot.hocmai.vn/3-loi-ich-ma-viec-hoc-nhom-mang-lai.html" target="_blank">👥 3 lợi ích của việc học nhóm — HocMai</a>
       </div>
