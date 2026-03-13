@@ -599,6 +599,30 @@
       </div>
     </div>
 
+    <!-- POST 7 -->
+    <div class="post-card" data-cat="thoigian" onclick="openPost('ngunghi')" style="animation-delay:0.7s">
+      <div class="post-cat">⏰ Quản lý thời gian</div>
+      <span class="post-icon">😴</span>
+      <div class="post-title">Nghỉ ngơi và ngủ đủ giấc — Kỹ năng học tập quan trọng nhất</div>
+      <p class="post-excerpt">Ngủ đủ giấc không phải là lười biếng — đó là cách não bộ củng cố kiến thức và tái tạo năng lượng hiệu quả nhất.</p>
+      <div class="post-meta">
+        <span>4 phút đọc</span>
+        <span class="read-more">Đọc →</span>
+      </div>
+    </div>
+
+    <!-- POST 8 -->
+    <div class="post-card" data-cat="hocbai" onclick="openPost('hocnhom')" style="animation-delay:0.8s">
+      <div class="post-cat">📚 Mẹo học bài</div>
+      <span class="post-icon">👥</span>
+      <div class="post-title">Học nhóm — Bí quyết hiểu bài nhanh và nhớ lâu hơn</div>
+      <p class="post-excerpt">Học cùng bạn bè không chỉ vui hơn mà còn giúp bạn hiểu sâu hơn, lấp đầy lỗ hổng kiến thức và duy trì động lực.</p>
+      <div class="post-meta">
+        <span>4 phút đọc</span>
+        <span class="read-more">Đọc →</span>
+      </div>
+    </div>
+
   </div>
 
   <footer>
@@ -742,6 +766,54 @@
         </ul>
         <div class="source-label">📎 Nguồn tham khảo</div>
         <a class="source-link disabled">🔍 Đang cập nhật nguồn tham khảo...</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Nghỉ ngơi & Ngủ đủ giấc -->
+  <div class="popup-overlay" id="popup-ngunghi" onclick="closePost('ngunghi')">
+    <div class="popup-box" onclick="event.stopPropagation()">
+      <button class="popup-close" onclick="closePost('ngunghi')">✕</button>
+      <div class="popup-cat">⏰ Quản lý thời gian</div>
+      <span class="popup-icon">😴</span>
+      <div class="popup-title">Nghỉ ngơi và ngủ đủ giấc</div>
+      <div class="popup-divider"></div>
+      <div class="popup-body">
+        <p>Nhiều học sinh nghĩ rằng thức khuya học bài là cần cù — nhưng thực tế, não bộ <strong>củng cố kiến thức trong lúc ngủ</strong>, không phải lúc thức.</p>
+        <ul class="tip-list">
+          <li><div class="tip-num">1</div> <span>Ngủ đủ 7–9 tiếng mỗi đêm — đây là thời gian não chuyển kiến thức từ bộ nhớ ngắn hạn sang dài hạn</span></li>
+          <li><div class="tip-num">2</div> <span>Đi ngủ và thức dậy cùng một giờ mỗi ngày để tạo nhịp sinh học ổn định</span></li>
+          <li><div class="tip-num">3</div> <span>Tránh màn hình điện thoại 30 phút trước khi ngủ — ánh sáng xanh làm não tỉnh táo giả tạo</span></li>
+          <li><div class="tip-num">4</div> <span>Chợp mắt 20 phút vào buổi trưa giúp tăng khả năng tập trung buổi chiều lên đáng kể</span></li>
+          <li><div class="tip-num">5</div> <span>Ôn bài nhẹ trước khi ngủ — não sẽ tự xử lý và ghi nhớ kiến thức đó trong giấc ngủ</span></li>
+        </ul>
+        <p>💡 <strong>Nhớ:</strong> Thức đêm học bài trước kỳ thi thực ra làm giảm khả năng nhớ bài hơn là giúp ích!</p>
+        <div class="source-label">📎 Nguồn tham khảo</div>
+        <a class="source-link" href="https://ieltsthuyanh.com/tai-sao-nghi-ngoi-lai-la-ky-nang-hoc-tap-quan-trong-nhat/" target="_blank">😴 Tại sao nghỉ ngơi là kỹ năng quan trọng nhất — IELTS Thuy Anh</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Học nhóm -->
+  <div class="popup-overlay" id="popup-hocnhom" onclick="closePost('hocnhom')">
+    <div class="popup-box" onclick="event.stopPropagation()">
+      <button class="popup-close" onclick="closePost('hocnhom')">✕</button>
+      <div class="popup-cat">📚 Mẹo học bài</div>
+      <span class="popup-icon">👥</span>
+      <div class="popup-title">Học nhóm hiệu quả</div>
+      <div class="popup-divider"></div>
+      <div class="popup-body">
+        <p>Học nhóm không chỉ là ngồi cùng nhau — khi bạn <strong>giải thích cho người khác</strong>, bạn đang hiểu bài sâu hơn gấp nhiều lần so với tự học một mình.</p>
+        <ul class="tip-list">
+          <li><div class="tip-num">1</div> <span>Nhóm lý tưởng từ 3–5 người — quá đông dễ mất tập trung, quá ít không đủ góc nhìn đa dạng</span></li>
+          <li><div class="tip-num">2</div> <span>Mỗi người tự học trước, sau đó nhóm họp lại để chia sẻ và giải đáp thắc mắc</span></li>
+          <li><div class="tip-num">3</div> <span>Phân công mỗi người phụ trách giải thích một phần — dạy lại cho nhau là cách học hiệu quả nhất</span></li>
+          <li><div class="tip-num">4</div> <span>Đặt câu hỏi cho nhau như một buổi ôn thi thực sự để kiểm tra mức độ hiểu bài</span></li>
+          <li><div class="tip-num">5</div> <span>Giới hạn thời gian họp nhóm rõ ràng — có deadline giúp cả nhóm tập trung hơn</span></li>
+        </ul>
+        <p>💡 <strong>Mẹo:</strong> Nếu bạn giải thích được cho người khác hiểu, chứng tỏ bạn đã thực sự nắm vững kiến thức đó!</p>
+        <div class="source-label">📎 Nguồn tham khảo</div>
+        <a class="source-link" href="https://hoctot.hocmai.vn/3-loi-ich-ma-viec-hoc-nhom-mang-lai.html" target="_blank">👥 3 lợi ích của việc học nhóm — HocMai</a>
       </div>
     </div>
   </div>
